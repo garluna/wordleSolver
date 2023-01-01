@@ -12,6 +12,7 @@ int main() {
 	while (true) {
 		cout << "Insert letter correctness. Use - for incorrect, G for green, Y for yellow: ";
 		cin >> input;
+		helper.convertToUpper(input);
 
 		if (helper.shouldExit(input)) {
 			break;

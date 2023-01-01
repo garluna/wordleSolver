@@ -25,3 +25,10 @@ bool Helper::invalidInput(string input) {
 
 	return false;
 }
+
+void Helper::convertToUpper(string& input) {
+	for (int i = 0; i < input.size(); i++) {
+		char cur = input[i];
+		input[i] = toupper(cur);
+	}
+}

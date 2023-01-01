@@ -9,4 +9,5 @@ class Helper {
 public:
 	bool shouldExit(string input);
 	bool wordCorrect(string input);
+	bool invalidInput(string input);
 };

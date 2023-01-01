@@ -8,18 +8,22 @@ int main() {
 	Helper helper;
 	string input;
 
-	cout << "Insert guess: ";
-	cin >> input;
+	cout << "Make the first guess STEAL" << endl;
 	while (true) {
-		if (helper.shouldExit(input)) {
-			break;
-		}
 		cout << "Insert letter correctness. Use - for incorrect, G for green, Y for yellow: ";
 		cin >> input;
 
-		if (helper.wordCorrect(input)) {
-			cout << "Congrats!";
+		if (helper.shouldExit(input)) {
 			break;
+		}
+
+		if (helper.wordCorrect(input)) {
+			cout << "Congrats!" << endl;
+			break;
+		}
+
+		if (helper.invalidInput(input)) {
+			cout << "Input was invalid. Try inserting again." << endl;
 		}
 	}
 

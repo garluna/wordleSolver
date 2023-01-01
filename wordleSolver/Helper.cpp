@@ -10,3 +10,18 @@ bool Helper::shouldExit(string input) {
 bool Helper::wordCorrect(string input) {
 	return CORRECT == input;
 }
+
+bool Helper::invalidInput(string input) {
+	if (input.size() != 5) {
+		return true;
+	}
+
+	for (int i = 0; i < input.size(); i++) {
+		char cur = input[i];
+		if (!(cur == '-' || cur == 'G' || cur == 'Y')) {
+			return true;
+		}
+	}
+
+	return false;
+}

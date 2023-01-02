@@ -1,12 +1,15 @@
 #include <iostream>
 #include <string>
 #include "Helper.h"
+#include "WordFinder.h"
 
 using namespace std;
 
 int main() {
 	Helper helper;
+	WordFinder wordFinder;
 	string input;
+	string prediction;
 
 	cout << "Make the first guess STEAL" << endl;
 	while (true) {
@@ -15,7 +18,7 @@ int main() {
 		helper.convertToUpper(input);
 
 		if (helper.shouldExit(input)) {
-			break;
+			exit(EXIT_SUCCESS);
 		}
 
 		if (helper.wordCorrect(input)) {
@@ -24,9 +27,12 @@ int main() {
 		}
 
 		if (helper.invalidInput(input)) {
-			cout << "Input was invalid. Try inserting again." << endl;
+			cerr << "Input was invalid. Try inserting again." << endl;
 		}
+
+		prediction = wordFinder.predict(input);
+		cout << "Guess " + prediction << endl;
 	}
 
-	return 0;
+	exit(EXIT_SUCCESS);
 }

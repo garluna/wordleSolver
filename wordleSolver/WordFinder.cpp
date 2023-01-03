@@ -37,20 +37,25 @@ void WordFinder::filter(string input) {
 bool WordFinder::isPossibleWord(string word, string input) {
 	bool usedChar[5] = {false, false, false, false, false};
 	for (int i = 0; i < 5; i++) {
-		char c = input[i];
-		char letter = lastIncorrectWord[i];
-		bool foundLetter = false;
-		switch (c) {
-		case 'G':
+		if (input[i] == 'G') {
 			if (word[i] != lastIncorrectWord[i]) {
 				// cout << "Debug G " + word << endl;
 				return false;
 			}
 			usedChar[i] = true;
-			break;
-		case 'Y':
+		}
+	}
+
+	for (int i = 0; i < 5; i++) {
+		bool foundLetter = false;
+		char letter = lastIncorrectWord[i];
+		if (input[i] == 'Y') {
 			for (int j = 0; j < 5; j++) {
-				if (word[j] == letter && usedChar[j] == false && i != j) {
+				if (word[j] == letter && usedChar[j] == false) {
+					if (i == j) {
+						// cout << "Debug Y ij " + word << endl;
+						return false;
+					}
 					usedChar[j] = true;
 					foundLetter = true;
 					break;
@@ -60,16 +65,20 @@ bool WordFinder::isPossibleWord(string word, string input) {
 				// cout << "Debug Y " + word << endl;
 				return false;
 			}
-			break;
-		default:
+		}
+	}
+
+	for (int i = 0; i < 5; i++) {
+		char letter = lastIncorrectWord[i];
+		if (input[i] == '-') {
 			for (int j = 0; j < 5; j++) {
 				if (word[j] == letter && !usedChar[j]) {
 					// cout << "Debug - " + word << endl;
 					return false;
 				}
 			}
-			break;
 		}
 	}
+
 	return true;
 }

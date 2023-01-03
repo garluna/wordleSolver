@@ -28,6 +28,7 @@ int main() {
 
 		if (helper.invalidInput(input)) {
 			cerr << "Input was invalid. Try inserting again." << endl;
+			continue;
 		}
 
 		prediction = wordFinder.predict(input);
